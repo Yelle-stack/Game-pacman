@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pac-Man</title>
-    <link rel="stylesheet" href="pacman.css">
-    <script src="pacman.js"></script>
-</head>
-<body>
-    <canvas id="board"></canvas>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Chomp Maze</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="pacman.css" />
+    <script src="pacman.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <header id="hud">
+        <div>Score <span id="score">000000</span></div>
+        <div>Best <span id="best">000000</span></div>
+        <div>Level <span id="level">1</span></div>
+        <div>Lives <span id="lives" class="lives">♥♥♥</span></div>
+        <div class="buttons">
+          <button id="pauseBtn" type="button">Pause</button>
+          <button id="soundBtn" type="button">Sound: on</button>
+        </div>
+      </header>
+
+      <canvas id="board" aria-label="Game board"></canvas>
+
+      <p id="hint">Arrows / WASD or swipe to move · Space to start · P pause · M sound</p>
+
+      <!-- On-screen arrows, shown on touch screens only -->
+      <div id="dpad" aria-label="Direction buttons">
+        <button type="button" class="up" data-dir="U" aria-label="Up">▲</button>
+        <button type="button" class="left" data-dir="L" aria-label="Left">◀</button>
+        <button type="button" class="down" data-dir="D" aria-label="Down">▼</button>
+        <button type="button" class="right" data-dir="R" aria-label="Right">▶</button>
+      </div>
+    </div>
+  </body>
 </html>
