@@ -1,7 +1,143 @@
-body {
+:root {
+    /* Space taken by everything that is not the board (score, buttons...) */
+    --chrome: 120px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background: #05060f;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 8px;
+}
+
+/* ---------- Score and buttons ---------- */
+#hud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 18px;
+    font-size: 16px;
+}
+
+#hud span {
+    color: #ffd23f;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+#hud .lives {
+    color: #ff4d6d;
+    letter-spacing: 2px;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+}
+
+button {
+    font: inherit;
+    color: #ffffff;
+    background: #1c2a7a;
+    border: 2px solid #4361ee;
+    border-radius: 8px;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2a3ca8;
+}
+
+/* ---------- The board scales to fit the window ---------- */
+#board {
+    display: block;
+    width: min(100%, calc((100vh - var(--chrome)) * 19 / 21));
+    width: min(100%, calc((100dvh - var(--chrome)) * 19 / 21));
+    height: auto;
+    aspect-ratio: 19 / 21;
+    background: #05060f;
+    border-radius: 8px;
+    touch-action: none;          /* no page scrolling while playing */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#hint {
+    margin: 0;
+    font-size: 13px;
+    color: #9aa4d6;
     text-align: center;
 }
 
-#board {
-    background-color: black;
+/* ---------- On-screen arrows ---------- */
+#dpad {
+    display: none;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(2, 60px);
+    gap: 6px;
+}
+
+#dpad button {
+    font-size: 22px;
+    padding: 0;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#dpad .up { grid-column: 2; grid-row: 1; }
+#dpad .left { grid-column: 1; grid-row: 2; }
+#dpad .down { grid-column: 2; grid-row: 2; }
+#dpad .right { grid-column: 3; grid-row: 2; }
+
+/* ---------- Touch screens (phones and tablets) ---------- */
+@media (pointer: coarse) {
+    :root { --chrome: 250px; }
+    #dpad { display: grid; }
+    #hint { display: none; }
+}
+
+/* Phone held sideways: score on the left, board in the middle, arrows on the right */
+@media (pointer: coarse) and (orientation: landscape) {
+    :root { --chrome: 24px; }
+
+    #app {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    #hud {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
+    }
+
+    #board {
+        width: calc((100dvh - var(--chrome)) * 19 / 21);
+        max-width: 55vw;
+    }
+
+    #dpad {
+        grid-template-columns: repeat(3, 50px);
+        grid-template-rows: repeat(2, 50px);
+    }
 }
