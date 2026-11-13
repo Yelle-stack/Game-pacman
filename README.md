@@ -66,9 +66,8 @@ You can press a direction **before** a turn is possible: the game remembers it f
 ## 🚀 Run it locally
 
 ```bash
-git clone https://github.com/Yelle-stack/pacman.git
-cd pacman
-```
+   git clone https://github.com/Yelle-stack/Game-pacman.git
+   cd Game-pacman```
 
 Then open `index.html` in your browser. No installation or build step is needed.
 
